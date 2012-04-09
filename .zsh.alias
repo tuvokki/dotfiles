@@ -1,0 +1,78 @@
+# User specific aliases and functions
+alias cl='clear'
+alias ls='ls --color=auto'
+alias cla='cl && date && ls -lh'
+alias cll='cl && ls -lah'
+alias clo="clear && logout"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias dselect="sudo dselect --expert"
+alias suvim='sudo vim '
+alias su='sudo su -'
+alias ps='ps axf'
+alias gqview='geeqie'
+alias ncdu="ncdu --exclude-from $HOME/.ncdu-ex-file"
+
+alias vnc_st_fs="vncserver -geometry 1240x930"
+alias vnc_large="vncserver -geometry 1385x842"
+alias vnc_small="vncserver -geometry 1000x748"
+alias vnc_kill1="vncserver -kill :1"
+alias vnc_kill2="vncserver -kill :2"
+
+alias mail="mutt -f /var/mail/$USER"
+alias screene="screen -c $HOME/.screenemptyrc"
+alias psme="ps u|grep $USER"
+alias topme="top -u $USER"
+
+alias grep="egrep"
+alias man="man -a"
+
+#I can now run df -h|fawk 2 which saves a good bit of typing.
+function fawk {
+    first="awk '{print "
+    last="}'"
+    cmd="${first}\$${1}${last}"
+    eval $cmd
+}
+
+alias mc='mc -xa'
+alias mount='mount | while read dev_id on_word mnt_point type_word fs_type opts; do printf "%25s %s %25s %s %15s %s\\n" $dev_id $on_word $mnt_point $type_word $fs_type $opts; done'
+
+function testopts() {
+  emulate -L zsh
+    local opt usage
+    usage=' <options>
+    Options:
+      -c    Print a random number
+      -h    This help text
+      -l    Not implemented yet
+      -p    Not implemented yet
+      -s    Not implemented yet'
+
+  getopts "chlps:" opt
+  case "$opt" in
+    (c)
+    echo "rendom number"
+  esac
+
+  case "$opt" in
+    (h)
+    echo "This help text"
+  esac
+
+	case "$opt" in
+		(l|p|s)
+		echo "This option has not been implemented yet."
+	esac
+
+  case "$opt" in
+    (*)
+    if [[ -z "$1" ]]
+    then
+      print "Usage: $0 $usage"
+    fi
+  esac
+}
+
