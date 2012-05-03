@@ -52,7 +52,8 @@ options
   -v                  verbose mode  
 
 your choice of webapps for the options mentioned above is one of the options in the *$HOME/.restart.conf* file.
-This file is an ini-style config file and should list something like the following:
+This file is an ini-style config file and should list something like the following:  
+  
 [DEFAULT]  
 djangocommand: /manage.py  
 runcmd: runfcgi  
