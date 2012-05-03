@@ -1,0 +1,172 @@
+#!/usr/bin/python
+import getopt, sys, ConfigParser
+import subprocess, os, shlex
+
+def ConfigSectionMap(section):
+    dict1 = {}
+    options = Config.options(section)
+    for option in options:
+        try:
+            dict1[option] = Config.get(section, option)
+            if dict1[option] == -1:
+                DebugPrint("skip: %s" % option)
+        except:
+            print("exception on %s!" % option)
+            dict1[option] = None
+    return dict1
+
+def start(section):
+  location = ConfigSectionMap(section)['location']
+  port = ConfigSectionMap(section)['port']
+  pidfile = ConfigSectionMap(section)['pidfile']
+  djangocommand = ConfigSectionMap(section)['djangocommand']
+  host = ConfigSectionMap(section)['host']
+  runcmd = ConfigSectionMap(section)['runcmd']
+  method = ConfigSectionMap(section)['method']
+  if os.path.isfile(pidfile):
+    os.remove(pidfile)
+  command_line = location + djangocommand + " " + runcmd + " method=" + method + " host=" + host + " port=" + port + " pidfile=" + pidfile
+
+  args = shlex.split(command_line)
+  if verbose:
+    print args
+  p = subprocess.Popen(args)
+
+def kill(section):
+  pidfile = ConfigSectionMap(section)['pidfile']
+  if os.path.isfile(pidfile):
+    f = open(pidfile, 'r')
+    django_pid = f.read()
+    command_line = "kill " + django_pid
+    args = shlex.split(command_line)
+    if verbose:
+      print args
+    p = subprocess.Popen(args)
+    os.remove(pidfile)
+  else:
+    print "No pidfile found, kill the process manually if it is running."
+
+def restart(section):
+  pidfile = ConfigSectionMap(section)['pidfile']
+  if os.path.isfile(pidfile):
+    kill(section)
+    start(section)
+  else:
+    start(section)
+
+def usage():
+  print "Usage:", sys.argv[0].split('/')[4], "[-i]"
+  print """options
+  -r, --restart=      restart your choice 
+  -k, --kill=         kill your choice
+  -s, --start=        start your choice
+  -i, --interactive   interactive mode, the -r command line argument will be ignored
+  -h, --help          this help text
+  -v                  verbose mode
+
+your choice of webapps for the options mentioned above is one of the following:"""
+#  fmt="%5s - %s%s"
+  fmt = "  %s   %s      %s"
+  for section in Config.sections():
+    if section != 'defaults':
+      print fmt % (section, ConfigSectionMap(section)['name'].ljust(8), ConfigSectionMap(section)['description'])
+    
+  
+
+def getcommandlinearguments():
+  global interactive, verbose, action, option
+  try:                                
+    opts, args = getopt.getopt(sys.argv[1:], "hir:s:k:v", ["help", "interactive", "restart=", "kill=", "start="])
+  except getopt.GetoptError, err:
+    # print help information and exit:
+    print str(err) # will print something like "option -a not recognized"
+    usage()                         
+    sys.exit(2)
+
+  if opts:
+    for opt, arg in opts:
+      if opt == "-v":
+        verbose = True
+      elif opt in ("-h", "--help"):
+        usage()
+        sys.exit()
+      elif opt in ("-i", "--interactive"):
+        interactive = True
+      elif opt in ("-r", "--restart"):
+        action = 'restart'
+        option = arg
+      elif opt in ("-k", "--kill"):
+        action = 'kill'
+        option = arg
+      elif opt in ("-s", "--start"):
+        action = 'start'
+        option = arg
+      else:
+        assert False, "unhandled option"
+  else:
+    option = sys.argv[1].strip()
+
+#-- program execution --#
+Config = ConfigParser.ConfigParser()
+#Config.read("/home/wouter/bin/restarter.conf")
+try:
+  Config.read(os.environ["HOME"]+"/.restart.conf")
+except ConfigParser.ParsingError:
+  sys.exit("There is an error reading " + os.environ["HOME"]+"/.restart.conf")
+
+interactive = False
+verbose = False
+action = ''
+option = ''
+allowed_options = Config.sections()
+#try:
+  #allowed_options.remove('defaults')
+#except ValueError:
+  #sys.exit("There is no defaults section in the config file, abort!")
+  
+available_actions = ['restart', 'start', 'kill']
+
+getcommandlinearguments()
+#if option not in allowed_options and action not in available_actions and not interactive:
+if not allowed_options:
+  sys.exit("There are no configured options, do you have " + os.environ["HOME"]+"/.restart.conf available and configured?")
+if option not in allowed_options and not interactive:
+  print "unrecognized option(%s) , switch to interactive mode" % option
+  interactive = True
+else:
+  if action == '' and not interactive:
+    print "No action defined, defaulting: restarting %s. Use restart -i for interactive mode." % option
+    action = 'restart'
+  elif action not in available_actions and not interactive:
+    print "Unrecognized action(%s), switch to interactive mode" % action
+    interactive = True
+  else:
+    print "Switch to interactive mode"
+
+if interactive:
+  action = raw_input("What type of action do you want perform: ")
+  while action not in available_actions:
+    print "action must be one of ", available_actions
+    action = raw_input("What type of action do you want perform: ")
+
+  option = raw_input("What type of option do you want to perform this action on: ")
+  while option not in allowed_options:
+    print "option must be in one of ", allowed_options
+    option = raw_input("What type of option do you want to perform this action on: ")
+
+if verbose:
+  print "We are in verbose mode"
+  print "you entered action [%s] and [%s]" % (action, option)
+
+#djangocommand = ConfigSectionMap('defaults')['djangocommand']
+
+if action == 'start':
+  start(option)
+elif action == 'restart':
+  restart(option)
+elif action == 'kill':
+  kill(option)
+else:
+  print "unrecognized action, aborting." 
+  usage()                         
+  sys.exit(2)
