@@ -1,0 +1,7 @@
+# searchsrc
+function searchsrc {
+    first="grep -r "
+	last=" * | awk -F\":\" '{print \$1}'"
+    cmd="${first}${1}${last}"
+    eval $cmd
+}

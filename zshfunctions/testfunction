@@ -1,0 +1,36 @@
+#testfunction
+function testopts() {
+  emulate -L zsh
+    local opt usage
+    usage=' <options>
+    Options:
+      -c    Print a random number
+      -h    This help text
+      -l    Not implemented yet
+      -p    Not implemented yet
+      -s    Not implemented yet'
+
+  getopts "chlps:" opt
+  case "$opt" in
+    (c)
+    echo "rendom number"
+  esac
+
+  case "$opt" in
+    (h)
+    echo "This help text"
+  esac
+
+	case "$opt" in
+		(l|p|s)
+		echo "This option has not been implemented yet."
+	esac
+
+  case "$opt" in
+    (*)
+    if [[ -z "$1" ]]
+    then
+      print "Usage: $0 $usage"
+    fi
+  esac
+}
