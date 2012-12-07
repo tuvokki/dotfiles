@@ -1,0 +1,14 @@
+# snapshotter
+function create_snapshot() {
+  SNAPSHOTDIR="snapshots"
+  SNAPSHOTNAME="$1.`date '+%s'`.tbz"
+  if [[ -d $SNAPSHOTDIR ]]
+    then
+      tar cjf $SNAPSHOTDIR/$SNAPSHOTNAME $1/
+      echo "Created snapshot: $SNAPSHOTDIR/$SNAPSHOTNAME"
+    else
+      tar cjf $SNAPSHOTNAME $1/
+      echo "Created snapshot: $SNAPSHOTNAME"
+  fi
+}
+

@@ -1,0 +1,8 @@
+# fawk
+#I can now run df -h|fawk 2 which saves a good bit of typing.
+function fawk {
+    first="awk '{print "
+    last="}'"
+    cmd="${first}\$${1}${last}"
+    eval $cmd
+}
