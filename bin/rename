@@ -1,10 +1,11 @@
 #!/usr/bin/python
-import argparse, shutil
+import argparse, shutil, os
 
 parser = argparse.ArgumentParser(description='Rename a list of files starting by integer.')
 parser.add_argument('integer', type=int, nargs=1, help='the starting integer')
 parser.add_argument('files', type=str, nargs='*', help='the files that have to renamed in order')
 parser.add_argument('--filename', type=str, nargs=1, metavar='filename', help='the base filename of the output files', required=False)
+parser.add_argument('--ext', type=str, nargs=1, metavar='extension', help='change the extension of the output files to this', required=False)
 parser.add_argument('-v', '--verbose', action='store_true', default=False, help='prints verbose messages')
 #parser.add_argument('-a', action="store_true", default=False, help='a handy letter to start the alphabet')
 
@@ -14,15 +15,23 @@ stint = args.integer[0]
 stnum = len(args.files)
 
 verbose = args.verbose
+basename = "file"
 
 for tfile in args.files:
-  if verbose:
-    print "Moving " + tfile + "..."
+  newname, newext = os.path.splitext(tfile)
+
+  if args.ext:
+    newext = args.ext[0]
 
   if args.filename:
-    shutil.move(tfile, args.filename[0] + "_" + str(stint) + ".jpg")
-  else:
-    shutil.move(tfile, "file_" + str(stint) + ".jpg")
+    basename = args.filename[0]
+
+  newname = basename + "_" + str(stint) + "." + newext
+
+  shutil.move(tfile, newname)
+
+  if verbose:
+    print "Moved " + tfile + " to " + newname + "..."
 
   stint = stint + 1
 
