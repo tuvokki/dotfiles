@@ -1,0 +1,30 @@
+#!/usr/bin/python
+import argparse, shutil
+
+parser = argparse.ArgumentParser(description='Rename a list of files starting by integer.')
+parser.add_argument('integer', type=int, nargs=1, help='the starting integer')
+parser.add_argument('files', type=str, nargs='*', help='the files that have to renamed in order')
+parser.add_argument('--filename', type=str, nargs=1, metavar='filename', help='the base filename of the output files', required=False)
+parser.add_argument('-v', '--verbose', action='store_true', default=False, help='prints verbose messages')
+#parser.add_argument('-a', action="store_true", default=False, help='a handy letter to start the alphabet')
+
+args = parser.parse_args()
+
+stint = args.integer[0]
+stnum = len(args.files)
+
+verbose = args.verbose
+
+for tfile in args.files:
+  if verbose:
+    print "Moving " + tfile + "..."
+
+  if args.filename:
+    shutil.move(tfile, args.filename[0] + "_" + str(stint) + ".jpg")
+  else:
+    shutil.move(tfile, "file_" + str(stint) + ".jpg")
+
+  stint = stint + 1
+
+if verbose:
+  print "Finished moving " + str(stnum) + " files."

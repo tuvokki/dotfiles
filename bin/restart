@@ -104,7 +104,10 @@ def getcommandlinearguments():
       else:
         assert False, "unhandled option"
   else:
-    option = sys.argv[1].strip()
+    if len(sys.argv) > 1:
+      option = sys.argv[1].strip()
+    else:
+      option = ''
 
 #-- program execution --#
 Config = ConfigParser.ConfigParser()
