@@ -26,7 +26,7 @@ for tfile in args.files:
   if args.filename:
     basename = args.filename[0]
 
-  newname = basename + "_" + str(stint) + "." + newext
+  newname = basename + "_" + str(stint) + newext
 
   shutil.move(tfile, newname)
 
