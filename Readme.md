@@ -43,14 +43,14 @@ Of course this is not actually a portion of the dotfiles, but still essential en
 	  -v                    Prints a verbose version of the information  
 
 *bin/restart*  
-Usage: restart [-i]  
-options  
-  -r, --restart=      restart your choice  
-  -k, --kill=         kill your choice  
-  -s, --start=        start your choice  
-  -i, --interactive   interactive mode, the -r command line argument will be ignored  
-  -h, --help          this help text  
-  -v                  verbose mode  
+	Usage: restart [-i]  
+	options  
+  	-r, --restart=      restart your choice  
+  	-k, --kill=         kill your choice  
+  	-s, --start=        start your choice  
+  	-i, --interactive   interactive mode, the -r command line argument will be ignored  
+  	-h, --help          this help text  
+  	-v                  verbose mode  
 
 your choice of webapps for the options mentioned above is one of the options in the *$HOME/.restart.conf* file.
 This file is an ini-style config file and should list something like the following:  
