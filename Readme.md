@@ -36,11 +36,11 @@ Of course this is not actually a portion of the dotfiles, but still essential en
 
 	usage: diskinfo [-h] [-o OUTPUT] [-v]  
 
-Pretty print the output of disk information.  
+	Pretty print the output of disk information.  
 
-optional arguments:  
-  -h, --help            show this help message and exit  
-  -v                    Prints a verbose version of the information  
+	optional arguments:  
+	  -h, --help            show this help message and exit  
+	  -v                    Prints a verbose version of the information  
 
 *bin/restart*  
 Usage: restart [-i]  
