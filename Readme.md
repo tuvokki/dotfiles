@@ -33,7 +33,8 @@ Also there is a file called *.zsh.hist* which holds the history. This should be 
 Of course this is not actually a portion of the dotfiles, but still essential enough to add here. The bin directory provides some scripts that eases some of my repetitive tasks. They are mainly written in python (2.7) and needs to be executable and in your path. *.zshrc* takes care of this.
 
 *bin/diskinfo*  
-usage: diskinfo [-h] [-o OUTPUT] [-v]  
+
+	usage: diskinfo [-h] [-o OUTPUT] [-v]  
 
 Pretty print the output of disk information.  
 
