@@ -68,3 +68,4 @@ This file is an ini-style config file and should list something like the followi
 	location: /webdir/foobar.nl/fooapp  
 	port: 3000  
 
+#Also added a simple Python script to create a new post in a frontmatter markdown post
