@@ -4,7 +4,7 @@ This is an attempt to get some more unity in the way I use my command-line in os
 
 Zsh is a shell designed for interactive use, although it is also a powerful scripting language.
 
-As many shell-related stuff, zsh come with a 'dotfile' to configure the general usage and look and feel. I would like to have as much consistency in the usage and look and feel in my shells. And it shoudn't be too different under linux or mac os.
+As many shell-related stuff, zsh came with a 'dotfile' to configure the general usage and look and feel. I would like to have as much consistency in the usage and look and feel in my shells. And it shoudn't be too different under linux or mac os.
 
 That is why I have divided the files in some includes. These includes are in the following categories:
 
