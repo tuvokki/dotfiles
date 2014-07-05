@@ -6,7 +6,7 @@ Zsh is a shell designed for interactive use, although it is also a powerful scri
 
 As many shell-related stuff, zsh come with a 'dotfile' to configure the general usage and look and feel. I would like to have as much consistency in the usage and look and feel in my shells. And it shoudn't be too different under linux or mac os.
 
-That is why I have divided the files in some inclides. These includes are in the following categories:
+That is why I have divided the files in some includes. These includes are in the following categories:
 
 * general configuration
 * aliasses
