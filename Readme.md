@@ -1,6 +1,6 @@
 # Dotfiles
 
-This is an attempt to get some more unity in the way I use my commandline in osx and linux. I have made one important step about a thousand years ago: the usage of [zsh](http://www.zsh.org/).
+This is an attempt to get some more unity in the way I use my command-line in osx and linux. I have made one important step about a thousand years ago: the usage of [zsh](http://www.zsh.org/).
 
 Zsh is a shell designed for interactive use, although it is also a powerful scripting language.
 
