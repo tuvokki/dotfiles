@@ -2,7 +2,7 @@
 
 This is an attempt to get some more unity in the way I use my command-line in osx and linux. I have made one important step about a thousand years ago: the usage of [zsh](http://www.zsh.org/).
 
-Zsh is an interactibve shell designed for interactive use, although it is also a powerful scripting language.
+Zsh is a shell designed for interactive use, although it is also a powerful scripting language.
 
 As many shell-related stuff, zsh came with a 'dotfile' to configure the general usage and look and feel. I would like to have as much consistency in the usage and look and feel in my shells. And it shoudn't be too different under linux or mac os.
 
