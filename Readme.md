@@ -16,7 +16,7 @@ That is why I have divided the files in some includes. These includes are in the
 The initial commit in this repository is the set of dotfiles I use on my linux webserver. That is why there are the following files:
 
 *.zshrc*  
-The general configuration. This file should be exactly the same on all systems.
+The general configuration. This file should be exactly the same on all of your systems.
 
 *.zsh.alias*  
 The aliasses file. Also intended to be the same on all systems.
