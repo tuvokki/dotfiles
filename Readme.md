@@ -8,22 +8,27 @@ As many shell-related stuff, zsh came with a 'dotfile' to configure the general 
 
 ## Installation
 Install oh-my-zsh
+
 	sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
 Install the following plugins in your `.zshrc`:
+
 	plugins=(git npm z)
 
 Remove the custom directory
+
 	cd .oh-my-zsh
 	rm -rf custom
 
 Checkout this project into custom
+
 	git clone git@github.com:tuvokki/dotfiles.git custom
 
 ## Usage
 From this point on forward you'll have the same shell functions and theme on the installed machine.
 
 There are some os/usage related specifics that can be installed. For instance you can copy the OSX related aliasses to your shell by copying (or symlinking) the related file in the custom directory:
+
 	cd .oh-my-zsh/custom
 	cp extra/specific_osx.zsh .
 
