@@ -1,8 +1,0 @@
-# searchtree
-# I can now just type 'searchtree navigation' and it will open all files that have navigation in it
-function searchtree {
-    first="grep -r "
-	last=" * | awk -F\":\" '{print \$1}' | xargs notepad++"
-    cmd="${first}${1}${last}"
-    eval $cmd
-}

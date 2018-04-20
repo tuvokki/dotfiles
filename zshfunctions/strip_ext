@@ -1,9 +1,0 @@
-function strip_ext(){
-	if [[ -z $1 ]]; then
-		for i in *.txt
-			mv $i ${i%.*}
-	else
-		for i in *.$1
-			mv $i ${i%.*}
-	fi
-}
