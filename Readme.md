@@ -35,3 +35,6 @@ There are some os/usage related specifics that can be installed. For instance yo
 For workstation specific usage you can add additional files starting with `workstation` which will be ignored by git so there will be nog stashing and merging when this repo is updated. 
 
 Example: `workstation_office.zsh` will hold your office related aliasses like `alias cts=ssh team@teamserver.office.com`
+
+## Additions
+One of the plugins I end up installing is the [yarn-completion](https://github.com/BuonOmo/yarn-completion) plugin.
