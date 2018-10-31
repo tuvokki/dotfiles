@@ -9,5 +9,5 @@ alias gstsh='git status --short'
 alias grhhm='git reset --hard origin/master'
 
 # development related
-alias c='code .'
+alias c='open_code'
 alias s='yarn start'
