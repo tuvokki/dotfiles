@@ -36,4 +36,5 @@ For workstation specific usage you can add additional files starting with `works
 
 Example: `workstation_office.zsh` will hold your office related aliasses like `alias cts=ssh team@teamserver.office.com`
 
-Silly test commit.
+## Additions
+One of the plugins I end up installing is the [yarn-completion](https://github.com/BuonOmo/yarn-completion) plugin.
