@@ -10,4 +10,4 @@ alias grhhm='git reset --hard origin/master'
 
 # development related
 alias c='code .'
-alias s='yarn start'
+alias s='npm start'
