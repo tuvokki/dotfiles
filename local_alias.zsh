@@ -7,6 +7,7 @@ alias all='git add . && git commit -a -m '
 alias merges=git log --merges --first-parent master --pretty=format:"%h %<(10,trunc)%an %<(15)%ar %s"
 alias gstsh='git status --short'
 alias grhhm='git reset --hard origin/master'
+alias gcu='git rev-parse --abbrev-ref HEAD'
 
 # development related
 alias c='open_code'
