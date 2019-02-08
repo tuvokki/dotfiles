@@ -1,1 +1,4 @@
+# Workstation related files are always ignored
 workstation_*.zsh
+# OS Specific symlinks in root-custom-dir
+specific_*
